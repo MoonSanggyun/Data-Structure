@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node_{
+    int data;
+    struct Node_* pre;
+    struct Node_* next;
+}node;
+
+node* New_node();
+void Insert_Front();
+void Insert_End();
+void Print();
+
+node* head = NULL;
+
+int main()
+{
+    int n, x;
+    scanf("%d", &n);
+    for(int i = 0; i<n; i++){
+        scanf("%d",&x);
+        Insert_Front(x);
+        Print();
+        Re_Printf();
+    }
+    
+    
+    return 0;
+}
+
+node* New_node(){
+    node* tmp = (node*)malloc(sizeof(node));
+    tmp->data = 0;
+    tmp->pre = NULL;
+    tmp->next = NULL;
+    return tmp;
+} //head에 연결할 new 이중 노드 생성 및 구성
+
+void Insert_Front(int x)
+{
+    node* tmp = New_node();
+    tmp -> data = x;
+    tmp -> next = head;
+    tmp ->pre = NULL;
+    if(head != NULL){
+        head->pre = tmp;
+    }
+    head = tmp;
+}
+
+
+void Print() {
+
+    node* temp = head;
+	printf("List is : ");
+	while(temp != NULL){
+		printf("%d",temp->data);
+		temp = temp -> next;
+	}
+	printf("\n");
+}
