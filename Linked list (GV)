@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node{
+	int data;
+	struct Node* ptr;
+} node;
+
+node* head;
+
+void Front_insert(int a)
+{
+	node* temp = (node *)malloc(sizeof(node));
+	temp -> data = a;
+	temp -> ptr = head;
+	head = temp;
+}
+
+void Print()
+{
+	node* temp = head;
+	printf("List is : ");
+	while(temp != NULL){
+		printf("%d",temp->data);
+		temp = temp->ptr;
+	}
+	printf("\n");
+}
+
+int main(){
+	int a,n,i;
+	head = NULL;
+	printf("how many lists do you need : ");
+	scanf("%d",&n);
+	
+	for(i=0;i<n;i++){
+		printf("What number do you want to insert");
+		scanf("%d",&a);
+		Front_insert(a);
+		Print();
+	}
+	
+	return 0;
+}
